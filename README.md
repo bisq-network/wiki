@@ -15,3 +15,9 @@ If you are the Wiki Operator, you should implement off-site daily backups of bot
 37 13 * * * cd /usr/local/www && tar jcf /backup/bisq-wiki-`date +\%Y-\%m-\%d-\%H\%M`.tar.bz2 .
 0 14 * * * rsync -a /backup/bisq-wiki-\* /keybase/private/bisqwiki/backup/
 ```
+
+Also add a crontab for `www` user to generate sitemap hourly:
+```
+39 * * * * (cd /usr/local/www && php maintenance/generateSitemap.xml bisq.wiki) >/dev/null 2>&1
+```
+
